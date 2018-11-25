@@ -52,7 +52,7 @@
         }
 
         //前后台控制器和视图的目录
-        $requestString = $_SERVER['QUERY_STRING'];
+        $requestString = $_SERVER['QUERY_STRING']==""?$_SERVER['REQUEST_URI']:$_SERVER['QUERY_STRING'];
         // echo $requestString."<br>";
         $url = explode("/", $requestString);
 
@@ -60,7 +60,7 @@
         $action = explode("&", $actions)[0];
         $action =  $action!=""?$action:"index";
 
-        $controller = isset($url['1'])?$url['1']:'index';
+        $controller = isset($url['2'])?$url['2']:'index';
         $controller =  $controller!=""?$controller:"index";
 
         $module = isset($url['1'])?$url['1']:'index';
@@ -83,7 +83,6 @@
             // 不显示错误
             error_reporting(~E_ALL);
          }
-         
 
 
       }
@@ -133,6 +132,8 @@
             }
 
             $controller = new $controller_name();
+
+            // 获取控制器下的所有方法
             $cls_methods = get_class_methods($controller);
             if(!in_array($action_name,$cls_methods))
             {
@@ -142,7 +143,6 @@
          }
 
         //实例化控制器，然后调用相应的方法
-        
       	$controller->$action_name();
 
       }

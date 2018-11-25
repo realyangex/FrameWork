@@ -3,39 +3,32 @@
    class IndexController{
    	public function index()
    	{
-   		$con = getCon();
-   		$smarty = getSmarty();
-   		d($con->all('user'));
-   		$smarty->assign("test","帅哥");
-   		$smarty->display(CUR_VIEW_PATH."index.html");
+         echo "<h1 style='padding:0 0 0 20px'>welcome to miniPHPFrameWork</h1>";
+         echo "<label style='padding:0 0 0 20px'>copyright@realyangex</label>";
    	}
    	public function insert()
    	{
    		$con = getCon();
-   		$data = array("username"=>"杨琛","password"=>"yangc");
+   		$data = array("username"=>"test","password"=>"123456");
    		// echo $con->insert('user',$data);
    	}
 
    	public function update()
    	{
    		$con = getCon();
-   		$data = array("username"=>"杨琛","password"=>"123456");
+   		$data = array("username"=>"test","password"=>"123456");
    		// echo $con->update('user',"where 1=1",$data);
    	}
 
    	public function delete()
    	{
    		$con = getCon();
-   		// echo $con->delete('user',"where id=3 or id=4");
+   		echo $con->delete('user',"where id=3 or id=4");
    	}
 
    	public function query()
    	{
-   		$con = getCon();
-   		// d($con->query("update user set password='888' where id =3"));
-   		// d($con->query("select * from user"));
-   		session("aa","");
-		d(session("aa")); 		
+
    	}
    	public function img(){
    		captcha();
